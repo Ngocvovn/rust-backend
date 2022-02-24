@@ -1,5 +1,5 @@
-use std::net::TcpListener;
 use rust_backend::startup::run;
+use std::net::TcpListener;
 
 // `tokio::test` is the testing equivalent of `tokio::main`.
 // It also spares you from having to specify the `#[test]` attribute.
