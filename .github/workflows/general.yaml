@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        run: |
+          chmod +x ./scripts/init_db.sh
+          ./scripts/init_db.sh
+        shell: bash
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
