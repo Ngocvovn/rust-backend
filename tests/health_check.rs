@@ -1,4 +1,6 @@
+use rust_backend::configuration::get_configuration;
 use rust_backend::startup::run;
+use sqlx::{Connection, PgConnection};
 use std::net::TcpListener;
 
 // `tokio::test` is the testing equivalent of `tokio::main`.
@@ -38,6 +40,11 @@ async fn subscribe_returns_a_200_for_valid_form_data() {
     // Arrange
     let app_address = spawn_app().await;
     let client = reqwest::Client::new();
+    let configuration = get_configuration().expect("Failed to read configuration");
+    let connection_string = configuration.database.get_connection_string();
+    let connection = PgConnection::connect(&connection_string)
+        .await
+        .expect("Failed to connect to Postgres DB");
     // Act
     let body = "name=le%20guin&email=ursula_le_guin%40gmail.com";
     let response = client
