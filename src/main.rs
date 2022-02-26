@@ -1,7 +1,7 @@
 use env_logger::Env;
 use rust_backend::configuration::get_configuration;
 use rust_backend::startup::run;
-use sqlx::{Connection, PgPool};
+use sqlx::PgPool;
 use std::net::TcpListener;
 
 #[tokio::main]
