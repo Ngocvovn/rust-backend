@@ -99,10 +99,6 @@ async fn subscribe_returns_a_200_for_valid_form_data() {
         .expect("Failed to fetch saved subscription.");
     assert_eq!(saved.email, "ursula_le_guin@gmail.com");
     assert_eq!(saved.name, "le guin");
-    sqlx::query!("Drop database if exists haha")
-        .fetch_one(&app.db_pool)
-        .await
-        .expect("Failed to delete DB.");
 }
 #[tokio::test]
 async fn subscribe_returns_a_400_when_data_is_missing() {
